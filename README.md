@@ -6,7 +6,7 @@ it's really a classical routine to acquire a comprehensive understanding about h
 ---
 
 ## Introduction
-1. First, preview the 'train.csv' file to get an intuitive understanding for the data info.
+First, preview the 'train.csv' file to get an intuitive understanding for the data info.
 Obviously, 'Sex', 'Age', 'Pclass' should be important to decide whether one will survive(which 
 can be quickly operated in excel throughing pivot table, that don't need really a numerical value).
 
@@ -15,13 +15,13 @@ values! So how to tackle about it? 1) Fill the value by median value 2) Note tha
 same tunning or scaling to 'test.csv', which means, we can define a function, named harmoizeData, to 
 operator our datas 3) Remember to transfer nonnumerical values, cause classifier needs numerical input.
 
-2. Then, I try nearly all the classifier algorithms, so as to get an comprehensive comparision on the 
+I try nearly all the classifier algorithms, so as to get an comprehensive comparision on the 
 result. Concretly, several aspects is worth mentioned. 
 1) Thankfully to us, after a period of writing 
 my own codes for different ML algorithms and deducing & understanding principles, now i found it's easy 
 to utlize the powerful scikit learn module [sklearn](http://scikit-learn.org/stable/index.html) to generalize
 a much easier and quicker predictable module. Of course, it's must be just a start, a lot details are
-supposed to know and dis/advantages to handle. BTW, this blog maybe helpful:[Machine Learning Mastery](http://machinelearningmastery.com/blog)   And greatly recommender this book: [<统计学习方法>](http://book.douban.com/subject/10590856/) 
+supposed to know and dis/advantages to handle. BTW, this blog maybe helpful:[Machine Learning Mastery](http://machinelearningmastery.com/blog)   And greatly recommender this book:[<统计学习方法>](http://book.douban.com/subject/10590856/) 
 2) 'LinearRegression'-->'LogisticalRegression'-->'RandomForest-
 Classifier'-->'GradientBoostingClassifer'(GBDT)-->'svm.SVC'-->'[ensemble](http://www.scholarpedia.org/article/Ensemble_learning)
 on "GBDT"&"SVM"' are successively tried before focusing on [feature engineering]. 
