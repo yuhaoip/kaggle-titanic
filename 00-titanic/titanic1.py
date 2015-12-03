@@ -15,14 +15,16 @@ def harmonizeData(titanic):
     
     titanic['Age'] = titanic['Age'].fillna(titanic['Age'].median())
     
-    
     titanic.loc[titanic['Sex']=='male', 'Sex'] = 0
     titanic.loc[titanic['Sex']=='female', 'Sex'] = 1
     
-    titanic['Embarked'] = titanic['Embarked'].fillna('S')
-    titanic.loc[titanic['Embarked']=='S', 'Embarked'] = 0
-    titanic.loc[titanic['Embarked']=='C', 'Embarked'] = 1
-    titanic.loc[titanic['Embarked']=='Q', 'Embarked'] = 2
+    # Calculate the mode
+    mode = titanic['Embarked'].dropna().mode()[0]
+    titanic['Embarked'] = titanic['Embarked'].fillna(mode)
+    # Convert to dummy varibles, return pd.core.series.Series object
+    tempDummies = pd.get_dummies(titanic['Embarked'])
+    tempDummies = tempDummies.rename(columns= lambda x: 'Embarked_'+str(x))
+    titanic = pd.concat([titanic, tempDummies], axis=1)
     
     titanic['Fare'] = titanic['Fare'].fillna(titanic['Fare'].median())
     
@@ -211,6 +213,7 @@ def getEnsembleResult(PredictionsList, method='averagingProbs'):
 # 0.83053 --0.79904(predictors=['Pclass','Sex','Titles','FamilyId','Fare'])
 # 0.83389 --(predictors=['Pclass','Sex','Titles','FamilyId','Fare','Embarked'])
 # 0.81033 --(predictors=['Pclass','Sex','Titles','FamilyId','Fare','Embarked','Age'])
+# 0.83165 -- featured 'Embarked' by dummy_varibles.
 def predictByEnsemble(trainData, 
                       predictors1=predictorsLabel, 
                       predictors2=predictorsLabel):
